@@ -2,7 +2,7 @@ import os
 import operator
 
 from os.path import isfile, join
-from convert import get_file_size_mb, normalize_path
+from convert import get_file_size, normalize_path
 
 
 class Crawler:
@@ -20,9 +20,9 @@ class Crawler:
             try:
                 for f in os.listdir(dir_to_crawl):
                     file = join(normalize_path(dir_to_crawl), f)
-                    if isfile(file) and get_file_size_mb(file) > self.min_size:
+                    if isfile(file) and get_file_size(file) > self.min_size:
                         # store the file name and size in a dictionary
-                        self.listing[file] = get_file_size_mb(file)
+                        self.listing[file] = get_file_size(file)
                     else:
                         # recursively crawl the folders
                         self.crawl_dir(file)
